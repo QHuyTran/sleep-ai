@@ -1,0 +1,73 @@
+Heart Rate Variability: What It Means for Fitness and Health
+Heart rate variability, or HRV for short, is a measure of your autonomic nervous system that is widely considered one of the best objective metrics for physical fitness and determining your body's readiness to perform.
+
+What is heart rate variability (HRV)?
+Heart rate variability is literally the variance in time between the beats of your heart. If your heart rate is 60 beats per minute, it's not actually beating once every second. Within that minute there may be 0.9 seconds between two beats, for example, and 1.15 seconds between two others.
+
+The greater this variability is, the more "ready" your body is to execute at a high level.
+Heart rate variability is determined by the time between heart beats, known as RR intervals.
+
+These periods of time between successive heart beats are known as RR intervals (named for the heartbeat's R-phase, the spikes you see on an EKG), measured in milliseconds. WHOOP calculates HRV using RMSSD, the root mean square of successive differences between heartbeats.
+
+How the autonomic nervous system affects HRV
+Although HRV manifests as a function of your heart rate, it actually originates from your nervous system. Your autonomic nervous system controls the involuntary aspects of your physiology and has two branches: parasympathetic (deactivating) and sympathetic (activating).
+
+The parasympathetic nervous system (often referred to as "rest and digest") handles inputs from internal organs and causes a decrease in heart rate. The sympathetic nervous system (often called "fight or flight") reflects responses to stress and exercise, increasing your heart rate and blood pressure.
+
+Heart rate variability comes from these two competing branches simultaneously sending signals to your heart. When your nervous system is balanced, your heart is constantly being told to beat slower by your parasympathetic system and faster by your sympathetic system. This causes a fluctuation in your heart rate: HRV.
+HRV is caused by two competing branches of the autonomic nervous system, sympathetic and parasympathetic.
+
+Why HRV is a sign of fitness and recovery
+When you have high heart rate variability, your body is responsive to both parasympathetic and sympathetic inputs. This is a sign that your nervous system is balanced and capable of adapting to its environment.
+
+If you have low heart rate variability, one branch is dominating (usually the sympathetic) and sending stronger signals to your heart. There are times when this is beneficial — like during a race when your body focuses on allocating resources to your legs rather than digesting food. However, if you're not doing something active, low HRV indicates your body is working hard for another reason — fatigue, dehydration, stress, or recovering from illness.
+
+The less one branch dominates the other, the more room there is for the sympathetic branch to activate when needed. This is why high HRV suggests you're fit and ready to go.
+
+What is a normal heart rate variability?
+Below is an average heart rate variability chart based on age:
+The average heart rate variability range for WHOOP members broken down by age.
+
+HRV decreases as people get older. The middle 50% of 20-25 year olds have an average HRV in the 55-105 range, while 60-65 year olds tend to be between 25-45. However, answering "What is a good heart rate variability?" is more complicated than these ranges suggest.
+
+How to interpret your HRV trends
+Heart rate variability is a metric that fluctuates throughout the day, from one day to the next, and from one person to another. Younger people tend to have higher HRV than older people, and males often have slightly higher HRV than females.
+
+Elite athletes usually have greater heart rate variability, with endurance athletes regularly showing higher HRV than strength-based athletes. However, none of this is absolute — plenty of extremely fit people have HRV regularly in the 40s. What constitutes a healthy heart rate variability differs for everyone.
+
+Rather than comparing your HRV to others, follow your own long-term trends. If you're improving your fitness and health, you should see a gradual increase in your average HRV.
+A positive trend in daily heart rate variability over a 3-month time period.
+
+Similarly, a downward trend in your HRV over several days is worth paying attention to. Among other things, it might be a sign that you're training too hard, not sleeping enough, getting sick, eating poorly, or failing to hydrate properly.
+
+Factors that affect heart rate variability
+Many factors impact your HRV. These fall into three categories: training factors, lifestyle factors, and biological factors.
+
+Training factors include the frequency and intensity of your workouts. If you go extra hard for several days in a row, your HRV will likely take a hit.
+
+Lifestyle factors — what you eat, drink, and how consistently you sleep — also significantly affect your heart rate variability.
+
+Biological factors like age, gender, and genetics are out of your control. Some people are simply born to have higher HRV than others.
+
+How to improve your heart rate variability
+Methods for increasing HRV include the following:
+
+Intelligent Training. Don't overdo it and push too hard for too many days without giving your body an opportunity to recover.
+Hydration. The better hydrated you are, the easier it is for your blood to circulate and deliver oxygen and nutrients to your body. Aiming to drink close to one ounce of water per pound of bodyweight each day is a good goal.
+Avoid Alcohol. One night of drinking potentially decreases HRV for up to five days.
+Steady Healthy Diet. Poor nutrition has adverse effects on HRV, as does eating at unexpected times.
+Quality Sleep. It's not just the amount of sleep you get that matters, but also the quality and consistency of your sleep. Going to bed and waking up at similar times each day is beneficial.
+Auto-Regulation. In general, trying to get your body on a consistent schedule (in particular with sleep and eating to align your circadian rhythm) is helpful. Your body does things more efficiently when it knows what's coming.
+A more detailed guide can be found in 10 Ways to Improve Your HRV, along with mental strategies to increase HRV.
+
+How to use HRV to guide your training
+Studies show that HRV is a valuable tool for optimizing training. After days of strenuous activity, your HRV will dip. With proper rest and recovery, it will rise, signaling when you're ready to push yourself again.
+Intense training for several days will likely cause HRV to drop, but it will then increase when your body has time to recover.
+
+Rather than sticking to a predetermined workout schedule, modifying the intensity and duration of your physical activity based on your heart rate variability will allow you to train smarter and more efficiently. When your HRV is high, your body is prepared to take on a greater workload. When it is low, it's a sign to cut back. Read more on .
+Frequently asked questions about heart rate variability
+What is a good heart rate variability by age?
+HRV naturally declines with age, but there is a wide range of what is considered "good." For example, many WHOOP members in their 20s have an average HRV between 55-105 ms, while members in their 60s may be closer to 25-45 ms. However, what matters most is your personal trend relative to your own baseline, not how you compare to others.
+
+Is a low HRV number a cause for concern?
+A single low HRV reading is not necessarily a cause for concern—it can signal temporary stress, intense training, poor sleep, or a response to diet or alcohol. A consistent downward trend over several days is more significant, indicating sustained strain. If you have persistent concerns about low HRV, consult a healthcare professional.

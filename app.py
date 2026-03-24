@@ -3,6 +3,7 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 from datetime import datetime, timedelta
+from rag_engine import build_rag_engine
 
 # Page config
 st.set_page_config(
@@ -93,5 +94,95 @@ if page == "Dashboard":
     st.plotly_chart(fig4, use_container_width=True)
 
 elif page == "AI Analysis":
-    st.title("AI Sleep Analysis")
-    st.info("RAG pipeline coming in Day 3. Check back soon.")
+    st.title("🧠 AI Sleep Analysis")
+    st.write("Powered by RAG over sleep science research documents.")
+
+    # Build RAG engine (cached so it only loads once)
+    @st.cache_resource
+    def load_rag_engine():
+        return build_rag_engine()
+
+    with st.spinner("Loading AI engine... (first load takes 1-2 minutes)"):
+        engine = load_rag_engine()
+
+    st.success("AI engine ready")
+    st.divider()
+
+    # Personalized analysis using real data
+    st.subheader("Your Personalized Analysis")
+
+    if st.button("Analyze My Sleep"):
+        # Build context from real data
+        recent_sleep = sleep_df.tail(7)
+        avg_sleep = recent_sleep['total_sleep_hours'].mean()
+        avg_deep = recent_sleep['deep_hours'].mean()
+        avg_rem = recent_sleep['rem_hours'].mean()
+        worst_night = recent_sleep.loc[recent_sleep['total_sleep_hours'].idxmin(
+        )]
+        best_night = recent_sleep.loc[recent_sleep['total_sleep_hours'].idxmax(
+        )]
+
+        recent_hrv = hrv_df.tail(7)
+        avg_hrv = recent_hrv['hrv'].mean() if len(recent_hrv) > 0 else None
+
+        # Construct grounded prompt with real numbers
+        personal_context = f"""
+        The user's sleep data from the last 7 nights:
+        - Average total sleep: {avg_sleep:.1f} hours
+        - Average deep sleep: {avg_deep:.1f} hours  
+        - Average REM sleep: {avg_rem:.1f} hours
+        - Worst night: {worst_night['total_sleep_hours']:.1f} hours on {worst_night['date'].strftime('%B %d')}
+        - Best night: {best_night['total_sleep_hours']:.1f} hours on {best_night['date'].strftime('%B %d')}
+        - Average HRV: {f'{avg_hrv:.0f} ms' if avg_hrv else 'not available'}
+        """
+
+        query = f"""
+        {personal_context}
+
+        Based on this person's actual sleep data, provide exactly 3 specific and actionable 
+        recommendations to improve their sleep quality. For each recommendation:
+        1. State the specific action clearly
+        2. Explain why it applies to their data specifically
+        3. Cite which source document supports this recommendation
+        
+        Be specific to their numbers — reference their actual averages in your response.
+        """
+
+        with st.spinner("Analyzing your sleep data..."):
+            response = engine.query(query)
+
+        st.markdown("### Your Recommendations")
+        st.write(str(response))
+
+    st.divider()
+
+    # Free-form chat with sleep data context
+    st.subheader("Ask Anything About Your Sleep")
+    user_question = st.text_input("Ask a question about sleep or your data:",
+                                  placeholder="e.g. How can I get more deep sleep?")
+
+    if user_question:
+        recent_sleep = sleep_df.tail(7)
+        avg_sleep = recent_sleep['total_sleep_hours'].mean()
+        avg_deep = recent_sleep['deep_hours'].mean()
+        avg_rem = recent_sleep['rem_hours'].mean()
+        recent_hrv = hrv_df.tail(7)
+        avg_hrv = recent_hrv['hrv'].mean() if len(recent_hrv) > 0 else None
+
+        personalized_question = f"""
+      Context about this specific user:
+      - Average total sleep last 7 nights: {avg_sleep:.1f} hours
+      - Average deep sleep last 7 nights: {avg_deep:.1f} hours
+      - Average REM sleep last 7 nights: {avg_rem:.1f} hours
+      - Average HRV last 7 nights: {f'{avg_hrv:.0f} ms' if avg_hrv else 'not available'}
+      
+      User question: {user_question}
+      
+      Answer specifically for this user using their actual data above.
+      Cite your sources.
+      """
+
+        with st.spinner("Thinking..."):
+            response = engine.query(personalized_question)
+        st.markdown("**Answer:**")
+        st.write(str(response))
