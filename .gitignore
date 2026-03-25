@@ -3,3 +3,4 @@ venv/
 __pycache__/
 *.pycexport.xml
 *.csv
+.streamlit/secrets.toml

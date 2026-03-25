@@ -2,8 +2,9 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-from datetime import datetime, timedelta
+from data_processor import process_health_export
 from rag_engine import build_rag_engine
+import os
 
 # Page config
 st.set_page_config(
@@ -12,26 +13,62 @@ st.set_page_config(
     layout="wide"
 )
 
-# Load data
+# Initialize session state
+if 'data_loaded' not in st.session_state:
+    st.session_state.data_loaded = False
 
+# Upload screen
+if not st.session_state.data_loaded:
+    st.title("🌙 Sleep AI")
+    st.subheader("Personalized sleep analysis powered by AI")
+    st.write("Upload your Apple Health export to get started.")
 
-@st.cache_data
-def load_data():
-    sleep = pd.read_csv('sleep_data.csv')
-    hrv = pd.read_csv('hrv_data.csv')
-    hr = pd.read_csv('heart_rate.csv')
-    sleep['date'] = pd.to_datetime(sleep['date'])
-    hrv['date'] = pd.to_datetime(hrv['date'])
-    hr['date'] = pd.to_datetime(hr['date'])
-    return sleep, hrv, hr
+    with st.expander("How to export your Apple Health data"):
+        st.write("""
+        1. Open the **Health app** on your iPhone
+        2. Tap your **profile picture** (top right)
+        3. Tap **Export All Health Data**
+        4. Wait 1-2 minutes for it to prepare
+        5. **AirDrop or email** the zip file to your computer
+        6. Upload the zip file below
+        """)
 
+    uploaded_file = st.file_uploader(
+        "Upload export.zip from Apple Health",
+        type=['zip', 'xml'],
+        help="Your data is processed locally and never stored."
+    )
 
-sleep_df, hrv_df, hr_df = load_data()
+    if uploaded_file:
+        with st.spinner("Processing your health data... this may take 1-2 minutes"):
+            try:
+                file_bytes = uploaded_file.read()
+                sleep_df, hrv_df, hr_df = process_health_export(file_bytes)
+                st.session_state.sleep_df = sleep_df
+                st.session_state.hrv_df = hrv_df
+                st.session_state.hr_df = hr_df
+                st.session_state.data_loaded = True
+                st.success(
+                    f"Loaded {len(sleep_df)} nights of sleep data. Redirecting...")
+                st.rerun()
+            except Exception as e:
+                st.error(f"Error processing file: {str(e)}")
+                st.write(
+                    "Make sure you're uploading the zip file exported directly from Apple Health.")
+    st.stop()
+
+# Data is loaded - retrieve from session state
+sleep_df = st.session_state.sleep_df
+hrv_df = st.session_state.hrv_df
+hr_df = st.session_state.hr_df
 
 # Sidebar
 st.sidebar.title("🌙 Sleep AI")
 page = st.sidebar.radio("Navigate", ["Dashboard", "AI Analysis"])
 days = st.sidebar.slider("Days to display", 7, 90, 30)
+if st.sidebar.button("Upload New Data"):
+    st.session_state.data_loaded = False
+    st.rerun()
 
 # Filter by selected days
 cutoff = pd.Timestamp.now() - pd.Timedelta(days=days)
