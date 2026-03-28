@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 from data_processor import process_health_export
-from rag_engine import build_rag_engine
+# RAG engine imported lazily to reduce startup memory
 import os
 
 # Page config
