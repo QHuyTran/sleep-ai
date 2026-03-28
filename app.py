@@ -137,6 +137,7 @@ elif page == "AI Analysis":
     # Build RAG engine (cached so it only loads once)
     @st.cache_resource
     def load_rag_engine():
+        from rag_engine import build_rag_engine
         return build_rag_engine()
 
     with st.spinner("Loading AI engine... (first load takes 1-2 minutes)"):
